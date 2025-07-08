@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Elements Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .reveal-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .reveal-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .reveal-button:active {
+            transform: translateY(0);
+        }
+
+        .hidden-content {
+            display: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #ff6b6b;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .hidden-content.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .secret-box {
+            display: none;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .secret-box.show {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .mystery-card {
+            display: none;
+            background: linear-gradient(45deg, #a8edea, #fed6e3);
+            color: #333;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 15px 0;
+            text-align: center;
+            animation: bounceIn 0.6s ease-out;
+        }
+
+        .mystery-card.show {
+            display: block;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .image-container {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+            animation: zoomIn 0.5s ease-out;
+        }
+
+        .image-container.show {
+            display: block;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .placeholder-image {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 18px;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .reset-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .reset-button:hover {
+            transform: scale(1.05);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎭 Hidden Elements Reveal</h1>
+        
+        <div class="section">
+            <h2>Click to Reveal Secrets!</h2>
+            <button class="reveal-button" onclick="toggleElement('secret1')">
+                🔍 Reveal Secret Message
+            </button>
+            <div id="secret1" class="hidden-content">
+                <h3>🎉 Secret Revealed!</h3>
+                <p>Congratulations! You've discovered the first hidden message. Sometimes the best things are hidden in plain sight!</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="reveal-button" onclick="toggleElement('secret2')">
+                🎁 Open Mystery Box
+            </button>
+            <div id="secret2" class="secret-box">
+                <h3>🏆 Mystery Box Opened!</h3>
+                <p>Inside this box, you'll find... endless possibilities! Keep exploring to find more hidden treasures.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="reveal-button" onclick="toggleElement('secret3')">
+                🌟 Discover Magic Card
+            </button>
+            <div id="secret3" class="mystery-card">
+                <h3>✨ Magic Card Revealed!</h3>
+                <p>This magical card grants you the power of curiosity! Use it wisely to uncover more hidden elements.</p>
+                <p><strong>Special Power:</strong> Click anywhere on this card to make it sparkle!</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="reveal-button" onclick="toggleElement('secret4')">
+                🖼️ Show Hidden Image
+            </button>
+            <div id="secret4" class="image-container">
+                <div class="placeholder-image">
+                    🌈 Beautiful Image
+                </div>
+                <p>This represents a beautiful hidden image that was waiting to be discovered!</p>
+            </div>
+        </div>
+
+        <button class="reset-button" onclick="hideAll()">
+            🔄 Hide All Elements
+        </button>
+    </div>
+
+    <script>
+        function toggleElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (element.classList.contains('show')) {
+                element.classList.remove('show');
+            } else {
+                element.classList.add('show');
+            }
+        }
+
+        function hideAll() {
+            const hiddenElements = document.querySelectorAll('.hidden-content, .secret-box, .mystery-card, .image-container');
+            hiddenElements.forEach(element => {
+                element.classList.remove('show');
+            });
+        }
+
+        // Add sparkle effect to magic card
+        document.addEventListener('DOMContentLoaded', function() {
+            const magicCard = document.getElementById('secret3');
+            magicCard.addEventListener('click', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.8)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'none';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
